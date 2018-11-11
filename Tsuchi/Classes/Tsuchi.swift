@@ -74,12 +74,12 @@ public class Tsuchi: NSObject {
 
     public func register(completion: ((Bool) -> Void)?) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            if settings.authorizationStatus == .authorized {
-                completion?(true)
+            if settings.authorizationStatus == .denied {
+                completion?(false)
                 return
             }
-            if settings.notificationCenterSetting == .enabled {
-                completion?(true)
+            if settings.notificationCenterSetting != .enabled {
+                completion?(false)
                 return
             }
             self.requestAuthorization { (granted, _) in
