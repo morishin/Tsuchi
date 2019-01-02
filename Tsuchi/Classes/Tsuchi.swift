@@ -78,10 +78,6 @@ public class Tsuchi: NSObject {
                 completion?(false)
                 return
             }
-            if settings.notificationCenterSetting != .enabled {
-                completion?(false)
-                return
-            }
             self.requestAuthorization { (granted, _) in
                 completion?(granted)
             }
